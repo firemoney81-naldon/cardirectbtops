@@ -1,23 +1,432 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+<!-- SEO를 위한 JSON-LD (FAQPage) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "렉서스 RX450h의 연간 유지비는 평균 얼마인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "렉서스 RX450h의 연간 유지비는 운전자의 주행거리, 보험료, 소모품 교체 주기에 따라 달라지지만, 평균적으로 연간 250만 원에서 400만 원 사이로 예상됩니다. 이는 일반 가솔린 SUV 대비 연료비가 절약되는 장점이 있지만, 고급 수입차 특유의 높은 보험료와 소모품 비용이 반영된 수치입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "렉서스 RX450h의 가장 큰 유지비 부담 요소는 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "렉서스 RX450h는 일반 가솔린 차량과 달리 하이브리드 배터리 교체 비용이 잠재적인 큰 부담 요소입니다. 신차 구매 후 보증 기간이 끝난 차량의 경우, 하이브리드 배터리 교체 비용으로 300만 원에서 600만 원 이상의 비용이 발생할 수 있습니다. 하지만 최근에는 배터리 수명이 길어지고 있으며, 2026년 기준으로 보증 기간이 연장되는 추세입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "렉서스 RX450h의 하이브리드 배터리 보증 기간과 수명은 어떻게 되나요?",
+          "@id": "#배터리보증-답변",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "렉서스 RX450h의 하이브리드 배터리 보증 기간은 보통 10년/20만 km(선도래 기준)로 적용됩니다. 이는 초기 구매자들이 배터리 수명에 대해 크게 걱정하지 않아도 되도록 보장하는 기간입니다. 실제 수명은 운전 습관에 따라 다르지만, 10년 이상 운행하는 경우가 많습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "수입차 보험료를 절약할 수 있는 팁이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "수입차 보험료는 일반적으로 국산차보다 비싸지만, 마일리지 특약, 블랙박스 할인, 안전운전 습관(티맵 등), 그리고 무사고 경력 유지를 통해 보험료를 절약할 수 있습니다. 특히 경미한 사고는 보험 처리 대신 자비로 수리하는 것이 장기적인 보험료 절약에 도움이 될 수 있습니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #0A2B4E; /* Dark Blue */
+            --secondary-color: #2F6FD5; /* Medium Blue */
+            --accent-color: #2ECC71; /* Green Accent */
+            --text-color: #333;
+            --bg-light: #F7F9FC; /* Light Grayish Blue */
+            --bg-dark: #1E3A8A; /* Darker Blue for Hero */
+            --btn-cta: #FF6B6B; /* Soft Red CTA */
+            --border-color: #E0E0E0;
+            --header-bg: #FFFFFF;
+            --footer-bg: #1A1A1A;
+            /* New colors for softer design (adjusting primary/secondary) */
+            --main-text-color: #333333;
+            --heading-color: #2A3F6F; /* Deep Indigo */
+            --highlight-color: #3E8EDE; /* Sky Blue */
+            --card-bg: #FFFFFF;
+            --section-bg-light: #F0F6FF; /* Very light blue background */
+        }
+
+        /* Font Import */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+        /* Base Styles */
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background-color: var(--bg-light); color: var(--main-text-color); line-height: 1.8; font-size: 16px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
+
+        /* Header */
+        header { background-color: var(--header-bg); padding: 20px; text-align: center; border-bottom: 2px solid var(--border-color); }
+        header h1 { margin: 0; font-size: 2.5em; color: var(--heading-color); font-weight: 900; }
+        header h1 a { text-decoration: none; color: inherit; }
+
+        /* Hero Section */
+        .hero { background-color: var(--bg-dark); color: #fff; text-align: center; padding: 100px 20px; position: relative; overflow: hidden; }
+        .hero h1 { font-size: 3.5em; margin-bottom: 15px; font-weight: 900; line-height: 1.3; }
+        .hero p { font-size: 1.4em; margin-bottom: 40px; font-weight: 300; }
+        .hero .highlight { color: var(--accent-color); font-weight: 700; }
+
+        /* CTA Button */
+        .cta-btn { background-color: var(--btn-cta); color: #fff; padding: 18px 40px; font-size: 1.3em; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; display: inline-block; }
+        .cta-btn:hover { background-color: #E55B5B; transform: translateY(-3px); }
+
+        /* Main Content Structure */
+        main { background-color: #fff; padding-bottom: 40px; }
+        .content-section { padding: 60px 0; border-bottom: 1px solid var(--border-color); }
+        .content-section:last-child { border-bottom: none; }
+        .content-section h2 { font-size: 2.5em; color: var(--heading-color); text-align: left; margin-bottom: 30px; font-weight: 700; line-height: 1.4; }
+        .content-section h3 { font-size: 1.8em; color: var(--primary-color); margin-top: 40px; margin-bottom: 15px; padding-left: 15px; border-left: 4px solid var(--highlight-color); }
+        .content-section p { margin-bottom: 20px; font-weight: 400; color: #444; }
+        .content-section strong { font-weight: 700; color: var(--heading-color); }
+        .content-section ul { list-style: none; padding-left: 0; margin-bottom: 20px; }
+        .content-section li { padding: 10px 0; border-bottom: 1px solid #eee; }
+
+        /* Data Visualization (Tables and Graphs) */
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .data-table th, .data-table td { border: 1px solid var(--border-color); padding: 15px; text-align: center; font-size: 0.95em; }
+        .data-table th { background-color: var(--primary-color); color: #fff; font-weight: 700; }
+        .data-table tr:nth-child(even) { background-color: var(--section-bg-light); }
+        .data-table td strong { color: var(--highlight-color); }
+        .data-table td.highlight { background-color: #ffe0e0; font-weight: bold; }
+
+        /* Interactive Elements (Forms and Calculators) */
+        .comparison-form-box { background-color: var(--card-bg); padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 30px; border: 1px solid var(--border-color); }
+        .comparison-form-box h2 { color: var(--heading-color); text-align: center; margin-bottom: 25px; font-size: 2em; }
+        .comparison-form-box label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--main-text-color); }
+        .comparison-form-box input[type="text"],
+        .comparison-form-box input[type="number"],
+        .comparison-form-box input[type="tel"],
+        .comparison-form-box input[type="date"],
+        .comparison-form-box select { width: 100%; padding: 14px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 1em; }
+        .comparison-form-box .form-group { margin-bottom: 25px; }
+
+        /* FAQ Section */
+        .faq-item { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+        .faq-item h3 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 20px; background-color: var(--section-bg-light); margin: 0; font-weight: 700; color: var(--primary-color); }
+        .faq-item h3::after { content: '+'; font-size: 1.5em; color: var(--secondary-color); transition: transform 0.3s; }
+        .faq-item.active h3::after { content: '-'; transform: rotate(180deg); }
+        .faq-item p { display: none; padding: 20px; color: #555; background-color: #fff; }
+        .faq-item.active p { display: block; }
+
+        /* Related Keywords and Navigation */
+        .keyword-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; margin-top: 30px; }
+        .keyword-list li { background-color: var(--bg-light); color: var(--primary-color); padding: 10px 20px; margin: 5px; border-radius: 20px; font-weight: 500; border: 1px solid var(--border-color); transition: background-color 0.3s; }
+        .keyword-list li:hover { background-color: #EAEAEA; }
+        .link-source { font-size: 0.9em; color: var(--secondary-color); text-decoration: none; display: block; margin-top: 5px; }
+
+        /* Footer */
+        footer { background-color: var(--footer-bg); color: #ccc; text-align: center; padding: 40px 20px; font-size: 0.9em; line-height: 1.6; }
+        footer a { color: #ccc; text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+        footer a:hover { color: #fff; text-decoration: underline; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .hero p { font-size: 1.2em; }
+            .cta-btn { padding: 15px 30px; font-size: 1.1em; }
+            .content-section h2 { font-size: 2em; }
+            .content-section h3 { font-size: 1.5em; }
+            .comparison-form-box { padding: 25px; }
+            .data-table th, .data-table td { font-size: 0.85em; padding: 10px; }
+        }
+        
+        /* Image Placeholder Style */
+        .image-container { width: 100%; height: 400px; overflow: hidden; border-radius: 10px; margin-bottom: 30px; position: relative; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; }
+        .image-caption { position: absolute; bottom: 0; width: 100%; background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 10px; text-align: center; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="/">렉서스 RX450h 유지비 총정리: 연간 비용 예측 및 절약 팁</a></h1>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- 히어로 섹션: 핵심 키워드 강조 및 CTA -->
+        <section class="hero">
+            <div class="container">
+                <h1>고급 하이브리드 SUV <span class="highlight">렉서스 RX450h 유지비</span>,<br> 2026년 기준으로 정확히 분석해 드립니다.</h1>
+                <p>구매 전 필수 확인! 렉서스 RX450h의 연간 예상 유지 비용(보험, 소모품, 연료비)을 상세히 알아보고, 현명한 절약 방법을 찾아보세요.</p>
+                <a href="#quote-form-section" class="cta-btn">내 예상 유지비 견적 계산해보기</a>
+            </div>
+        </section>
+
+        <!-- 핵심 요약 및 비교 견적 폼 섹션 -->
+        <section id="quote-form-section" class="content-section" style="background-color: var(--section-bg-light); padding: 40px 0;">
+            <div class="container">
+                <div class="comparison-form-box">
+                    <h2>렉서스 RX450h 연간 유지비 실시간 예측 계산기</h2>
+                    <p>간단한 정보 입력으로 렉서스 RX450h의 <strong>연간 유지비 예상 금액</strong>을 산출해 드립니다. 차량 모델, 주행거리, 운전자 조건을 입력하여 정확한 견적을 받아보세요.</p>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="car-model">차량 모델 선택 (RX450hL, RX450h F Sport 등)</label>
+                            <select id="car-model" required>
+                                <option value="">모델을 선택하세요</option>
+                                <option value="rx450h-standard">RX450h 일반형</option>
+                                <option value="rx450h-f-sport">RX450h F Sport</option>
+                                <option value="rx450h-long">RX450hL (롱바디)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="annual-mileage">연간 예상 주행거리 (km)</label>
+                            <input type="number" id="annual-mileage" placeholder="예: 15000" required min="1000">
+                        </div>
+                        <div class="form-group">
+                            <label for="driver-age">운전자 연령 (만 26세 이상/미만)</label>
+                            <input type="number" id="driver-age" placeholder="예: 35" required min="18" max="99">
+                        </div>
+                        <div class="form-group">
+                            <label for="insurance-history">최근 3년간 무사고 경력 여부</label>
+                            <select id="insurance-history">
+                                <option value="yes">무사고</option>
+                                <option value="no">사고 이력 있음</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="cta-btn">내 유지비 예상 금액 알아보기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO 상세 컨텐츠 1: 렉서스 RX450h의 특성과 유지비 구조 -->
+        <section class="content-section">
+            <div class="container">
+                <h2 id="rx450h-maintainance-overview">렉서스 RX450h 유지비 구조 분석: 하이브리드 차량의 특장점과 단점</h2>
+                <p>렉서스 RX450h는 고급 SUV 시장에서 높은 신뢰성과 정숙성을 자랑하는 모델입니다. 특히 하이브리드 파워트레인을 통해 뛰어난 연비를 제공하여 많은 운전자들에게 매력적인 선택지로 꼽힙니다. 하지만 수입차이자 하이브리드 차량이라는 특성상 일반 국산차와는 다른 유지비 구조를 가지고 있습니다. 렉서스 RX450h의 유지비는 크게 정기적으로 발생하는 비용(연료비, 보험료, 세금)과 비정기적으로 발생하는 소모품 및 수리비(하이브리드 배터리, 타이어, 브레이크 등)로 나눌 수 있습니다.</p>
+
+                <div class="image-container">
+                    <!-- Pexels에서 렉서스 RX450h 또는 고급 SUV 이미지를 검색하여 사용 -->
+                    <img src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="렉서스 RX450h 전면부">
+                    <div class="image-caption">렉서스 RX450h는 뛰어난 연비와 정숙성을 자랑하지만, 수입차 특유의 유지비 구조를 이해해야 합니다.</div>
+                </div>
+
+                <h3 id="fuel-efficiency">1. 렉서스 RX450h 연료비 절감 효과: 평균 연비와 실제 주행 환경</h3>
+                <p>렉서스 RX450h의 가장 큰 장점은 바로 하이브리드 기술을 통한 연료 효율성입니다. 공식 복합 연비는 모델에 따라 리터당 12km에서 13km 내외로, 동급 가솔린 SUV (예: 제네시스 GV70 2.5T, 아우디 Q5 45 TFSI)가 8~10km/l인 것을 고려하면 상당한 절약 효과를 기대할 수 있습니다. 2026년 기준으로 유가 변동을 고려하더라도, 연간 15,000km 주행 시 일반 가솔린 차량 대비 50만원에서 100만원 이상의 유류비 절감이 가능합니다. 특히 도심 주행이 많은 운전자에게는 저속 주행 시 전기 모터 활용으로 연비 장점이 극대화됩니다.</p>
+                <p><strong>주목해야 할 점:</strong> 렉서스 RX450h는 고급 휘발유를 권장하는 경우가 많아, 일반 휘발유 대비 리터당 가격이 높을 수 있습니다. 하지만 실제 오너들의 후기를 보면 일반 휘발유 주유도 가능하다는 평이 많으므로, 이 부분은 개인의 선택에 따라 비용이 달라질 수 있습니다.</p>
+
+                <h3 id="fixed-cost-insurance">2. 고정 비용 분석: 수입차 보험료와 자동차세</h3>
+                <p>수입차의 고정비용은 국산차 대비 높게 책정되는 경향이 있습니다. 렉서스 RX450h 역시 예외는 아닙니다.</p>
+                <ul>
+                    <li><strong>보험료:</strong> 차량 가격이 높기 때문에 자차 보험료가 비쌉니다. 특히 렉서스 브랜드는 도난 위험이 낮고 부품 수급이 안정적이지만, 수리 시 공임 및 부품 가격이 높기 때문에 보험사별 보험료 견적이 크게 차이날 수 있습니다. 30대 운전자 기준으로 연간 보험료가 100만원에서 150만원 사이로 형성되는 경우가 많습니다.</li>
+                    <li><strong>자동차세:</strong> 렉서스 RX450h는 배기량 3,456cc입니다. 2026년 현행 세법 기준으로 3,000cc 이상 차량에 적용되는 세액을 계산하면 연간 약 90만원 내외의 자동차세가 부과됩니다. 하이브리드 차량은 취득세 감면 혜택이 있지만, 배기량에 따른 자동차세는 감면 대상이 아닙니다.</li>
+                </ul>
+                <p><strong>팁:</strong> 보험료를 절약하려면 여러 보험사의 다이렉트 자동차보험 상품을 비교해 보는 것이 필수입니다. 30대 이상 운전자는 물론 20대 신규 가입자도 다이렉트 보험을 통해 설계사 수수료를 절약할 수 있습니다.</p>
+            </div>
+        </section>
+
+        <!-- SEO 상세 컨텐츠 2: 소모품 및 수리비 상세 분석 (표/그래프 활용) -->
+        <section class="content-section" style="background-color: var(--section-bg-light);">
+            <div class="container">
+                <h2 id="rx450h-parts-cost">렉서스 RX450h 소모품 교체 주기 및 예상 비용 (2026년 기준)</h2>
+                <p>렉서스 RX450h의 소모품 비용은 국산 고급 SUV 대비 다소 높게 책정됩니다. 하지만 렉서스 브랜드 특유의 내구성과 하이브리드 시스템 덕분에 일부 부품의 교체 주기가 길다는 장점도 있습니다. 다음은 렉서스 서비스센터 기준의 평균적인 소모품 교체 주기 및 예상 비용입니다.</p>
+
+                <h3 id="consumables-breakdown">1. 일반 소모품 (엔진 오일, 에어컨 필터 등)</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>소모품 항목</th>
+                            <th>권장 교체 주기</th>
+                            <th>예상 비용 (공임 포함, 2026년 기준)</th>
+                            <th>비고</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>엔진 오일 및 필터</td>
+                            <td>10,000km ~ 15,000km 또는 1년</td>
+                            <td><strong>15만 원 ~ 25만 원</strong></td>
+                            <td>하이브리드 특성상 엔진 작동 빈도가 낮아 교체 주기 연장 가능</td>
+                        </tr>
+                        <tr>
+                            <td>에어컨 필터 (캐빈 필터)</td>
+                            <td>10,000km 또는 1년</td>
+                            <td><strong>5만 원 ~ 10만 원</strong></td>
+                            <td>미세먼지 방지 필터 선택 가능</td>
+                        </tr>
+                        <tr>
+                            <td>브레이크 패드 (앞/뒤)</td>
+                            <td>40,000km ~ 60,000km</td>
+                            <td><strong>25만 원 ~ 40만 원</strong> (앞쪽 기준)</td>
+                            <td>회생 제동으로 인해 일반차 대비 수명 김</td>
+                        </tr>
+                        <tr>
+                            <td>브레이크 오일</td>
+                            <td>40,000km ~ 60,000km 또는 2년</td>
+                            <td><strong>10만 원 ~ 15만 원</strong></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>참고:</strong> 위 표는 렉서스 공식 서비스센터(AS) 기준이며, 일반 정비소를 이용하면 비용을 약 20~30% 절감할 수 있습니다. 하지만 하이브리드 시스템 정비는 전문성을 요하므로, 보증 기간 내에는 공식 센터 이용을 추천합니다.</p>
+
+                <h3 id="hybrid-battery">2. 하이브리드 시스템 유지비: 배터리 교체 비용의 진실</h3>
+                <p>렉서스 RX450h를 구매할 때 가장 많은 사람들이 궁금해하는 부분이 바로 하이브리드 배터리 교체 비용입니다. 배터리 수명이 다했을 때 발생하는 큰 금액 때문에 구매를 망설이는 경우가 많습니다. 2026년 기준으로 렉서스 하이브리드 배터리의 보증 기간은 10년/20만 km로 매우 넉넉합니다. 따라서 신차를 구매하는 경우, 최소한 10년 동안은 배터리 걱정 없이 운행할 수 있습니다.</p>
+                <p><strong>배터리 교체 비용 예측:</strong> 보증 기간 이후 배터리를 교체해야 할 경우, RX450h의 배터리팩 교체 비용은 2026년 현재 기준으로 300만 원에서 600만 원 사이로 형성되어 있습니다. 배터리 기술 발전과 재활용 시장 활성화로 향후 비용이 하락할 가능성도 있지만, 아직까지는 고가입니다. 다행히 렉서스 하이브리드는 배터리 관리 시스템이 우수하여 실제 10년 이상 운행한 차량에서도 배터리 이상이 발생하는 경우가 드물며, 일부 오너들은 20만 km 이상을 운행하기도 합니다.</p>
+
+                <h3 id="tire-cost">3. 타이어 교체 비용</h3>
+                <p>렉서스 RX450h는 차량 무게와 성능에 맞는 고성능 타이어를 사용합니다. 순정 타이어 (보통 미쉐린, 브리지스톤 등)의 경우 1짝당 30만 원~40만 원 수준이며, 4짝 모두 교체 시 120만 원에서 160만 원의 비용이 발생합니다. 타이어 수명은 4만 km ~ 5만 km로, 주행 습관에 따라 차이가 있습니다.</p>
+            </div>
+        </section>
+
+        <!-- SEO 상세 컨텐츠 3: RX450h와 경쟁 모델 유지비 비교 및 절약 팁 -->
+        <section class="content-section">
+            <div class="container">
+                <h2 id="comparison-tips">경쟁 모델 비교 및 유지비 절약 팁: 현명하게 RX450h 운행하기</h2>
+                <p>렉서스 RX450h를 구매하려는 예비 오너들은 종종 제네시스 GV70, 벤츠 GLC, BMW X3 등과 비교를 합니다. 유지비 측면에서 렉서스 RX450h의 장점과 단점, 그리고 장기적인 관점에서 비용을 절약할 수 있는 방법을 알아보겠습니다.</p>
+
+                <h3 id="comparison-model">1. 렉서스 RX450h vs. 경쟁 모델 유지비 차이점</h3>
+                <p>렉서스 RX450h는 경쟁 모델 대비 <strong>연료비</strong>에서 압도적인 장점을 가집니다. 특히 하이브리드 차량은 취득세 감면 혜택이 있어 초기 구매 비용도 절약할 수 있습니다. 반면, <strong>수리비</strong> 측면에서는 국산차인 제네시스 GV70보다 높은 비용이 발생할 수 있습니다. 이는 수입차의 부품 가격과 공임 차이 때문입니다. 2026년 기준으로 렉서스 RX450h의 유지비는 연비로 인한 절약분과 수입차 수리비의 증가분을 고려하여 종합적으로 판단해야 합니다.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>비교 항목</th>
+                            <th>렉서스 RX450h (하이브리드)</th>
+                            <th>제네시스 GV70 2.5T (가솔린)</th>
+                            <th>차이점 (RX450h 기준)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>연비 (복합)</td>
+                            <td>약 12km/l</td>
+                            <td>약 9km/l</td>
+                            <td><strong>뛰어난 연비로 연료비 절약</strong></td>
+                        </tr>
+                        <tr>
+                            <td>소모품 비용</td>
+                            <td>높음 (수입차)</td>
+                            <td>보통 (국산차)</td>
+                            <td><strong>수리 시 공임, 부품비 고가</strong></td>
+                        </tr>
+                        <tr>
+                            <td>취득세 감면</td>
+                            <td>O (하이브리드 혜택)</td>
+                            <td>X</td>
+                            <td><strong>초기 비용 절감</strong></td>
+                        </tr>
+                        <tr>
+                            <td>하이브리드 배터리 리스크</td>
+                            <td>O (장기적 리스크 존재)</td>
+                            <td>X</td>
+                            <td><strong>보증 기간 확인 필수</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="cost-reduction-tips">2. 렉서스 RX450h 유지비 절약 팁</h3>
+                <ul>
+                    <li><strong>보험료 비교:</strong> 매년 갱신 시점마다 여러 보험사 견적을 비교하세요. 다이렉트 보험을 통해 15% 이상 절약할 수 있습니다. 또한, 주행거리가 짧다면 마일리지 특약을 활용하여 추가 할인 혜택을 받으세요. (T맵 등 안전운전 할인도 유효합니다.)</li>
+                    <li><strong>정비소 선택:</strong> 보증 기간 이후에는 공식 서비스센터가 아닌 전문 수입차 정비소를 이용하면 소모품 교체 비용을 크게 절감할 수 있습니다. 특히 엔진 오일, 필터 등은 일반 정비소에서 합리적인 가격으로 교체가 가능합니다.</li>
+                    <li><strong>소모품 관리:</strong> 렉서스 하이브리드 차량은 브레이크 마모가 적습니다. 급가속 및 급제동을 피하고 회생 제동을 적극적으로 활용하는 운전 습관을 가지면 브레이크 패드 교체 주기를 획기적으로 늘릴 수 있습니다.</li>
+                    <li><strong>중고차 구매 시 주의:</strong> 중고 렉서스 RX450h를 구매할 경우, 하이브리드 배터리 보증 기간과 잔여 수명을 반드시 확인해야 합니다. 보증 기간이 끝난 차량은 배터리 교체 비용을 고려하여 가격 흥정을 하는 것이 현명합니다.</li>
+                </ul>
+                <p><strong>참고:</strong> 렉서스 RX450h 오너들의 후기를 보면, 장기적으로는 렉서스의 높은 내구성 덕분에 고장 발생률이 낮아 오히려 국산차보다 총 유지비가 적게 들었다는 의견도 많습니다. 이는 렉서스 브랜드의 장점 중 하나입니다.</p>
+            </div>
+        </section>
+
+        <!-- SEO 상세 컨텐츠 4: 연관 검색어 키워드 활용 (네이버 스니펫 최적화) -->
+        <section class="content-section" style="background-color: #f0f4f8;">
+            <div class="container">
+                <h2 id="related-keywords">렉서스 RX450h 유지비 관련 연관 검색어 심층 분석</h2>
+                <p>렉서스 RX450h 유지비 검색 시 함께 많이 찾는 키워드는 차량 구매를 망설이는 운전자들의 고민을 보여줍니다. "렉서스 RX450h 단점", "렉서스 RX450h 장단점", "렉서스 RX450h 중고 가격", "렉서스 RX450h 장기렌트" 등이 대표적입니다. 이러한 키워드 분석을 통해 렉서스 RX450h의 유지비뿐만 아니라 구매 방식에 대한 고민까지 해결할 수 있습니다.</p>
+                <p><strong>함께 많이 찾는 키워드:</strong> #렉서스 RX450h 유지비 #렉서스 RX450h 단점 #렉서스 RX450h 장단점 #렉서스 RX450h 중고 가격 #렉서스 RX450h 2026 #렉서스 RX450h 장기렌트 #렉서스 RX450h 시승기 #렉서스 RX450h 보험료 #렉서스 하이브리드 배터리 보증 #렉서스 RX450h 연비</p>
+
+                <div class="comparison-form-box">
+                    <h2>렉서스 RX450h 구매 방식 비교 (장기렌트 vs. 할부)</h2>
+                    <p>렉서스 RX450h의 총 유지비는 구매 방식에 따라 달라집니다. 장기 렌트는 초기 비용이 적고 보험료, 세금 부담이 없다는 장점이 있으며, 할부 구매는 최종적인 차량 소유를 목적으로 합니다. 아래 폼을 통해 본인에게 유리한 구매 방식을 비교해 보세요.</p>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="purchase-type">선호 구매 방식</label>
+                            <select id="purchase-type">
+                                <option value="buy">일반 할부/현금 구매</option>
+                                <option value="rent">장기 렌트</option>
+                                <option value="lease">리스</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="period">기간 (개월)</label>
+                            <select id="period">
+                                <option value="36">36개월</option>
+                                <option value="48">48개월</option>
+                                <option value="60">60개월</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="down-payment">초기 비용 투입 가능 금액 (만원)</label>
+                            <input type="number" id="down-payment" placeholder="예: 500">
+                        </div>
+                        <button type="submit" class="cta-btn">맞춤형 구매 견적 비교하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO 상세 컨텐츠 5: 신뢰성 있는 외부 사이트 참조 -->
+        <section class="content-section">
+            <div class="container">
+                <h2 id="external-references">신뢰성 있는 외부 사이트 참조 및 정부 정책</h2>
+                <p>렉서스 RX450h의 유지비 관련 정보를 검증하기 위해 공신력 있는 외부 자료를 참고하는 것이 중요합니다. 특히 하이브리드 차량 관련 정책이나 자동차 세금은 정부 기관의 정보를 확인해야 합니다.</p>
+                <ul>
+                    <li><strong>금융감독원(FSS):</strong> 보험료 산출 기준 및 보험 상품 관련 정보. <a href="https://www.fss.or.kr/" target="_blank" class="link-source">금융감독원 공식 웹사이트</a></li>
+                    <li><strong>국토교통부(MOLIT):</strong> 자동차 관련 법규, 취득세 감면 등 정책 정보. <a href="https://www.molit.go.kr/" target="_blank" class="link-source">국토교통부 공식 웹사이트</a></li>
+                    <li><strong>한국자동차산업협회(KAMA):</strong> 자동차 통계 및 시장 동향. <a href="https://www.kama.or.kr/" target="_blank" class="link-source">한국자동차산업협회 공식 웹사이트</a></li>
+                    <li><strong>보험개발원(KIDI):</strong> 보험료 산출 기준 및 할인·할증 등급 정보. <a href="https://www.kidi.or.kr/" target="_blank" class="link-source">보험개발원 공식 웹사이트</a></li>
+                    <li><strong>나무위키(Namuwiki):</strong> 렉서스 RX450h 모델의 상세 정보 및 사용자 후기. <a href="https://namu.wiki/w/렉서스 RX" target="_blank" class="link-source">나무위키 렉서스 RX 항목</a></li>
+                </ul>
+                <p>이러한 정보를 바탕으로 렉서스 RX450h의 유지비를 다각도로 분석하고, 합리적인 구매 결정을 내리는 데 도움을 받을 수 있습니다. 렉서스 RX450h는 차량 가격이 높지만, 장기적인 관점에서 뛰어난 내구성과 연비로 인해 유지비 만족도가 높은 편입니다. 특히 2026년 기준으로 강화되는 환경 규제 속에서 하이브리드 차량의 가치는 더욱 높아지고 있습니다.</p>
+            </div>
+        </section>
+
+        <!-- FAQ 섹션 -->
+        <section class="content-section">
+            <div class="container">
+                <h2>자주 묻는 질문 (FAQ)</h2>
+                <div class="faq-item">
+                    <h3 id="q1">렉서스 RX450h 중고차 구매 시 주의할 점은 무엇인가요?</h3>
+                    <p>중고차 구매 시 가장 중요한 점은 하이브리드 배터리 보증 기간입니다. 보증 기간이 남은 차량을 선택하거나, 보증 기간이 만료된 차량이라면 배터리 상태를 꼼꼼히 점검하여 잠재적인 교체 비용을 고려해야 합니다. 또한, 렉서스는 정기적인 점검(주로 오일류 교체)을 꾸준히 받은 차량이 많으므로 정비 이력을 확인하는 것이 중요합니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q2">렉서스 RX450h를 장기 렌트로 이용하면 유지비가 절약되나요?</h3>
+                    <p>장기 렌트는 초기 비용이 없고, 보험료, 자동차세, 정비 비용(포함 상품 선택 시)을 렌탈료에 포함하여 지출 부담을 줄일 수 있습니다. 특히 렉서스와 같은 수입차는 보험료와 소모품 비용이 높기 때문에 장기 렌트가 유지비 측면에서 유리할 수 있습니다. 2026년 현재 많은 렌트 업체들이 다양한 상품을 제공하고 있으므로, 여러 곳의 견적을 비교해 보세요.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q3">하이브리드 차량은 일반 정비소에서 수리해도 되나요?</h3>
+                    <p>엔진 오일이나 타이어 교체 등 일반적인 소모품은 일반 정비소에서 수리해도 무방합니다. 하지만 하이브리드 시스템(배터리, 인버터 등)과 관련된 정비는 전문 지식과 장비가 필요하므로, 보증 기간 내에는 공식 서비스센터를 이용하고, 보증 기간 이후에는 하이브리드 전문 정비소를 이용하는 것이 안전합니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q4">렉서스 RX450h를 운행할 때 특별히 신경 써야 할 소모품이 있나요?</h3>
+                    <p>렉서스 하이브리드 차량은 일반 차량과 달리 엔진 외에 하이브리드 시스템 냉각수 관리도 중요합니다. 하이브리드 냉각수(인버터 냉각수)는 엔진 냉각수와 별도로 관리되며, 교체 주기가 도래하면 반드시 교체해야 시스템 효율 저하를 막을 수 있습니다.</p>
+                </div>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <!-- JavaScript for enhanced user experience (FAQ toggle) -->
+    <script>
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+                const p = parent.querySelector('p');
+                p.style.display = p.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
